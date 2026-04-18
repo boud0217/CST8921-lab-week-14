@@ -52,6 +52,8 @@ A `revenue_per_unit` column was added and a window function (`row_number()` part
 
 **Result:** Electronics is the top-revenue-per-unit category in all four regions.
 
+![Part 1 - Descriptive Analytics](screenshots/screenshot1.png)
+
 | region | category | revenue_per_unit |
 |--------|----------|-----------------|
 | East | Electronics | 780.0 |
@@ -64,6 +66,8 @@ A `revenue_per_unit` column was added and a window function (`row_number()` part
 ### Part 2 — Diagnostic Analytics (Monthly Trends via Pivot)
 
 Revenue was aggregated by month and pivoted by region to observe monthly trends.
+
+![Part 2 - Diagnostic Analytics](screenshots/screenshot2.png)
 
 | month | East | North | South | West |
 |-------|------|-------|-------|------|
@@ -79,6 +83,8 @@ North dominates in January, while East surges in March driven by a large Electro
 
 Using `rank()` and `sum()` as window functions partitioned by customer and ordered by timestamp, each transaction was ranked within its customer's history and a running revenue total was computed.
 
+![Part 3 - Advanced Analytics](screenshots/screenshot3.png)
+
 Alice has the highest cumulative revenue at **$3,112.47** across 4 transactions.
 
 ---
@@ -86,6 +92,8 @@ Alice has the highest cumulative revenue at **$3,112.47** across 4 transactions.
 ### Part 4 — Predictive Analytics (RFM Scoring)
 
 RFM (Recency, Frequency, Monetary) features were engineered per customer, then scored into 3 tiers using `ntile(3)` window functions (score 1 = best, 3 = worst).
+
+![Part 4 - Predictive Analytics](screenshots/screenshot4.png)
 
 | customer | recency | frequency | monetary | r_score | f_score | m_score |
 |----------|---------|-----------|----------|---------|---------|---------|
