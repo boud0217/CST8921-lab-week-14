@@ -3,13 +3,25 @@
 
 ---
 
-## 1. Overview
+## 1. Screenshots
+
+![Part 1 - Descriptive Analytics](screenshots/screenshot1.png)
+
+![Part 2 - Diagnostic Analytics](screenshots/screenshot2.png)
+
+![Part 3 - Advanced Analytics](screenshots/screenshot3.png)
+
+![Part 4 - Predictive Analytics](screenshots/screenshot4.png)
+
+---
+
+## 2. Overview
 
 This lab explores the full spectrum of big data analytics using **PySpark** on a simulated retail transactions dataset. It covers four types of analytics (descriptive, diagnostic, advanced/window-based, and predictive), two real-world use cases, and a data engineering output step. Seven hands-on exercises were also completed.
 
 ---
 
-## 2. Environment
+## 3. Environment
 
 | Component | Version |
 |-----------|---------|
@@ -22,7 +34,7 @@ A Python 3.11 virtual environment was required because PySpark 3.5.x is not comp
 
 ---
 
-## 3. Dataset
+## 4. Dataset
 
 The dataset simulates 20 retail transactions across 4 regions (North, South, East, West), 3 product categories (Electronics, Clothing, Food), and 9 customers, spanning January to March 2024.
 
@@ -44,15 +56,13 @@ A `revenue` column (`unit_price × quantity`) was derived at load time.
 
 ---
 
-## 4. Lab Parts
+## 5. Lab Parts
 
 ### Part 1 — Descriptive Analytics
 
 A `revenue_per_unit` column was added and a window function (`row_number()` partitioned by region, ordered by `revenue_per_unit` descending) was used to find the most expensive category per region.
 
 **Result:** Electronics is the top-revenue-per-unit category in all four regions.
-
-![Part 1 - Descriptive Analytics](screenshots/screenshot1.png)
 
 | region | category | revenue_per_unit |
 |--------|----------|-----------------|
@@ -66,8 +76,6 @@ A `revenue_per_unit` column was added and a window function (`row_number()` part
 ### Part 2 — Diagnostic Analytics (Monthly Trends via Pivot)
 
 Revenue was aggregated by month and pivoted by region to observe monthly trends.
-
-![Part 2 - Diagnostic Analytics](screenshots/screenshot2.png)
 
 | month | East | North | South | West |
 |-------|------|-------|-------|------|
@@ -83,8 +91,6 @@ North dominates in January, while East surges in March driven by a large Electro
 
 Using `rank()` and `sum()` as window functions partitioned by customer and ordered by timestamp, each transaction was ranked within its customer's history and a running revenue total was computed.
 
-![Part 3 - Advanced Analytics](screenshots/screenshot3.png)
-
 Alice has the highest cumulative revenue at **$3,112.47** across 4 transactions.
 
 ---
@@ -92,8 +98,6 @@ Alice has the highest cumulative revenue at **$3,112.47** across 4 transactions.
 ### Part 4 — Predictive Analytics (RFM Scoring)
 
 RFM (Recency, Frequency, Monetary) features were engineered per customer, then scored into 3 tiers using `ntile(3)` window functions (score 1 = best, 3 = worst).
-
-![Part 4 - Predictive Analytics](screenshots/screenshot4.png)
 
 | customer | recency | frequency | monetary | r_score | f_score | m_score |
 |----------|---------|-----------|----------|---------|---------|---------|
@@ -149,7 +153,7 @@ The enriched DataFrame was exported to `retail_analytics_output.parquet` using c
 
 ---
 
-## 5. Hands-On Exercises
+## 6. Hands-On Exercises
 
 ### Exercise 1 — revenue_per_unit (integrated into Part 1)
 Added `revenue_per_unit = revenue / quantity` and identified the most expensive category per region using a window function. Result: Electronics leads in all regions.
@@ -222,7 +226,7 @@ North is the healthiest region, driven by the highest total revenue and average 
 
 ---
 
-## 6. Key Takeaways
+## 7. Key Takeaways
 
 - **Electronics** is the highest-value category across all regions and is the primary driver of revenue anomalies.
 - **Alice** is the top customer by every RFM dimension — most recent, most frequent, and highest monetary value.
